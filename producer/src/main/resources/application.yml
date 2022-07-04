@@ -1,0 +1,14 @@
+application:
+  topic:
+    to: retryapp-topic
+
+server:
+  port: 8082
+
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      bootstrap-servers: 127.0.0.1:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: com.kakfa.retrytopicproducer.EventSerializer
