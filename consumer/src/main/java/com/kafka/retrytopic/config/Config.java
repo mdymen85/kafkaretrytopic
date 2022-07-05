@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.retrytopic.RetryTopicConfiguration;
+import org.springframework.kafka.retrytopic.RetryTopicConfigurationBuilder;
 
 @Configuration
 @EnableKafka
@@ -26,9 +28,9 @@ public class Config {
 //    public RetryTopicConfiguration myRetryableTopic() {
 //        return RetryTopicConfigurationBuilder
 //                .newInstance()
-//                .maxAttempts(1)
+//                .maxAttempts(3)
 //                .fixedBackOff(1000)
-//                .includeTopic("topic-for-reply-retry")
+//                .includeTopic("retryapp-topic-retry-1000")
 //                .retryOn(Exception.class)
 //                .create(template);
 //    }
