@@ -16,17 +16,24 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 public class EventConsumerRepositoryImpl implements IEventConsumerRepository {
 
-    private final EventConsumerRepository eventConsumerRepository;
+//    private final EventConsumerRepository eventConsumerRepository;
     private final ObjectMapper mapper;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void save(EventConsumer eventConsumer) throws JsonProcessingException {
+    public void save(EventConsumer eventConsumer) {
 
-        var entity = EventConsumerEntity.builder()
-                .json(mapper.writeValueAsString(eventConsumer))
-                .build();
+        try {
 
-        this.eventConsumerRepository.save(entity);
+            var entity = EventConsumerEntity.builder()
+                    .uuid(eventConsumer.getUuid())
+                    .json(mapper.writeValueAsString(eventConsumer))
+                    .build();
+//
+//            this.eventConsumerRepository.save(entity);
+        }
+        catch (JsonProcessingException e) {
+
+        }
     }
 }

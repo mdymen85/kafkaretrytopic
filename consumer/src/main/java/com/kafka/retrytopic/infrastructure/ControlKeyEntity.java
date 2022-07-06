@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "event_consumer_control_key")
 @Data
-@Builder
 public class ControlKeyEntity {
 
     @Id

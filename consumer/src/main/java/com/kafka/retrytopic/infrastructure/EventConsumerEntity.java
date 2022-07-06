@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "event_consumer")
 @Data
-@Builder
 public class EventConsumerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,5 +20,12 @@ public class EventConsumerEntity {
 
     public EventConsumerEntity() {
 
+    }
+
+    @Builder
+    public EventConsumerEntity(Long id, String uuid, String json) {
+        this.id = id;
+        this.uuid = uuid;
+        this.json = json;
     }
 }

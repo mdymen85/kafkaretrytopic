@@ -4,5 +4,5 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EventConsumerRepository extends CrudRepository<EventConsumerEntity, Long> {
+interface EventConsumerRepository extends CrudRepository<EventConsumerEntity, Long> {
 }
