@@ -6,8 +6,9 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "event_consumer_control_key")
+@Table(name = "control_key")
 @Data
+@Builder
 public class ControlKeyEntity {
 
     @Id
@@ -21,4 +22,12 @@ public class ControlKeyEntity {
     public ControlKeyEntity() {
 
     }
+
+    public ControlKeyEntity(Long id, String key, Integer count) {
+        this.id = id;
+        this.key = key;
+        this.count = count;
+    }
+
+
 }

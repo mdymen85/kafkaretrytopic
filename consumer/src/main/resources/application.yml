@@ -4,6 +4,8 @@ application:
     to: retryapp-retrytopic
   retry-topic:
     enabled: true
+#  is-retry-topic:
+#    enabled: true
 
 server:
   port: 8084
@@ -22,7 +24,7 @@ spring:
     #driverClassName: org.h2.Driver
     #url: jdbc:h2:mem:myDb;DB_CLOSE_DELAY=-1
     driver-classe-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/payments1?allowPublicKeyRetrieval=true&autoReconnect=true
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/retryapp?allowPublicKeyRetrieval=true&autoReconnect=true
     username: root
     password: mdymen_pass
   jpa:

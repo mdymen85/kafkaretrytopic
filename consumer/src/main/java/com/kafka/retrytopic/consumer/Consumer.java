@@ -1,5 +1,7 @@
 package com.kafka.retrytopic.consumer;
 
+import com.kafka.retrytopic.consumer.aspects.Redirect;
+import com.kafka.retrytopic.consumer.aspects.Substract;
 import com.kafka.retrytopic.producer.IToProducer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,24 +21,27 @@ public class Consumer {
     private final IToProducer iToProducer;
     private final RedirectControlService redirectControlService;
 
+    @Redirect
+    @Substract
     @RetryableTopic(
             attempts = "3",
             backoff = @Backoff(delay = 1000, multiplier = 2.0))
     @KafkaListener(topics = "${application.topic.from}", groupId = "listener")
-    @Redirect
     public void consumer(EventConsumer eventConsumer) throws Exception {
         log.info("Reading message {} from topic {}.", eventConsumer, topic);
 
         try {
 
             throw new Exception();
+
         }
         catch (Exception e) {
             log.error("error", e);
 
-            redirectControlService.doRedirect(eventConsumer);
+            redirectControlService.saveControlKey(eventConsumer);
 
-         //   iToProducer.produce(event);
+            throw new Exception();
+
 
         }
 

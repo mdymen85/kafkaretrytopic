@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Table(name = "event_consumer")
 @Data
 public class EventConsumerEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

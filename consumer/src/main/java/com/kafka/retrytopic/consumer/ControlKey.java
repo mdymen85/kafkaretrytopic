@@ -10,4 +10,7 @@ public class ControlKey {
     private String key;
     private Integer count;
 
+    public void substract() {
+        this.count--;
+    }
 }

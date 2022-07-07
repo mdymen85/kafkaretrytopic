@@ -7,7 +7,6 @@ import com.kafka.retrytopic.consumer.IEventConsumerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 public class EventConsumerRepositoryImpl implements IEventConsumerRepository {
 
-//    private final EventConsumerRepository eventConsumerRepository;
+    private final EventRepository eventRepository;
     private final ObjectMapper mapper;
 
     @Override
@@ -30,7 +29,7 @@ public class EventConsumerRepositoryImpl implements IEventConsumerRepository {
                     .json(mapper.writeValueAsString(eventConsumer))
                     .build();
 //
-//            this.eventConsumerRepository.save(entity);
+            this.eventRepository.save(entity);
         }
         catch (JsonProcessingException e) {
 
