@@ -6,5 +6,5 @@ public interface IRedirectControlService {
     boolean hasKey(String key);
     void add(String key);
     void saveControlKey(EventConsumer eventConsumer);
-
+    boolean existEvent(EventConsumer eventConsumer);
 }

@@ -19,14 +19,17 @@ public class EventConsumerEntity {
 
     private String json;
 
+    private String second;
+
     public EventConsumerEntity() {
 
     }
 
     @Builder
-    public EventConsumerEntity(Long id, String uuid, String json) {
+    public EventConsumerEntity(Long id, String uuid, String json, String second) {
         this.id = id;
         this.uuid = uuid;
         this.json = json;
+        this.second = second;
     }
 }

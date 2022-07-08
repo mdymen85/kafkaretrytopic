@@ -5,4 +5,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EventRepository extends CrudRepository<EventConsumerEntity, Long> {
+
+    boolean existsByUuidAndSecond(String uuid, String number);
+
 }

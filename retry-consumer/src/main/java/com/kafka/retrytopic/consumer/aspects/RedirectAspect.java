@@ -1,14 +1,12 @@
 package com.kafka.retrytopic.consumer.aspects;
 
 import com.kafka.retrytopic.config.retry.IsNotRetryTopicConsumer;
-import com.kafka.retrytopic.config.retry.IsRetryTopicConsumer;
 import com.kafka.retrytopic.consumer.EventConsumer;
 import com.kafka.retrytopic.consumer.RedirectControlService;
 import com.kafka.retrytopic.producer.IToProducer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
-
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
@@ -30,12 +28,19 @@ public class RedirectAspect {
 
         var key = eventConsumer.getUuid();
 
+
+        var existEvent = redirectControlService.existEvent(eventConsumer);
+        if (existEvent) {
+            producer.produce(eventConsumer);
+            return;
+        }
+
         //if has key in table, must redirect
         var hasKey = this.redirectControlService.hasKey(key);
 
         if (hasKey) {
-            producer.produce(eventConsumer);
-            return;
+            redirectControlService.doRedirect(eventConsumer);
+            throw new Exception();
         }
         proceedingJoinPoint.proceed(args);
 

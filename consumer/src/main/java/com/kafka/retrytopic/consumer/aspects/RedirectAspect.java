@@ -40,7 +40,7 @@ public class RedirectAspect {
         var hasKey = this.redirectControlService.hasKey(key);
 
         if (hasKey) {
-            redirectControlService.add(eventConsumer.getUuid());
+            redirectControlService.doRedirect(eventConsumer);
             throw new Exception();
         }
         proceedingJoinPoint.proceed(args);

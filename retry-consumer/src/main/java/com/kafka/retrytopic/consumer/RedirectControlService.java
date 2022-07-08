@@ -17,6 +17,11 @@ public class RedirectControlService implements IRedirectControlService {
     private final IEventConsumerRepository eventConsumerRepository;
 
     @Override
+    public boolean existEvent(EventConsumer eventConsumer) {
+        return eventConsumerRepository.existsByUuidAndNumber(eventConsumer.getUuid(), eventConsumer.getNumber());
+    }
+
+    @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void doRedirect(EventConsumer eventConsumer) {
         this.controlKeyRepository.add(eventConsumer.getUuid());
@@ -29,6 +34,7 @@ public class RedirectControlService implements IRedirectControlService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void add(String key) {
         controlKeyRepository.add(key);
     }

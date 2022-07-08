@@ -26,6 +26,7 @@ public class EventConsumerRepositoryImpl implements IEventConsumerRepository {
 
             var entity = EventConsumerEntity.builder()
                     .uuid(eventConsumer.getUuid())
+                    .second(eventConsumer.getNumber())
                     .json(mapper.writeValueAsString(eventConsumer))
                     .build();
 //
@@ -38,7 +39,7 @@ public class EventConsumerRepositoryImpl implements IEventConsumerRepository {
 
     @Override
     public boolean existsByUuidAndNumber(String uuid, String number) {
-        return eventRepository.existsByUuidAndNumber(uuid, number);
+        return eventRepository.existsByUuidAndSecond(uuid, number);
     }
 
 }
