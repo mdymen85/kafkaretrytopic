@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-@IsRetryTopicConsumerDisabled
+@IsNotRetryTopicConsumer
 public class RetryTopicConsumerDummy implements IRetryTopicConsumer {
 
     public void produce(EventConsumer eventConsumer) {

@@ -1,6 +1,7 @@
 package com.kafka.retrytopic.consumer.aspects;
 
 import com.kafka.retrytopic.config.retry.IsNotRetryTopicConsumer;
+import com.kafka.retrytopic.config.retry.IsRetryTopicConsumer;
 import com.kafka.retrytopic.consumer.EventConsumer;
 import com.kafka.retrytopic.consumer.RedirectControlService;
 import com.kafka.retrytopic.producer.IToProducer;
@@ -29,19 +30,12 @@ public class RedirectAspect {
 
         var key = eventConsumer.getUuid();
 
-
-        var existEvent = redirectControlService.existEvent(eventConsumer);
-        if (existEvent) {
-            producer.produce(eventConsumer);
-            return;
-        }
-
         //if has key in table, must redirect
         var hasKey = this.redirectControlService.hasKey(key);
 
         if (hasKey) {
-            redirectControlService.add(eventConsumer.getUuid());
-            throw new Exception();
+            producer.produce(eventConsumer);
+            return;
         }
         proceedingJoinPoint.proceed(args);
 

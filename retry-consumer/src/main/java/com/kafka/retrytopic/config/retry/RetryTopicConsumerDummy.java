@@ -1,17 +1,13 @@
-package com.kafka.retrytopic.producer;
+package com.kafka.retrytopic.config.retry;
 
-import com.kafka.retrytopic.config.retry.IsNotRetryTopicConsumer;
-import com.kafka.retrytopic.config.retry.IsRetryTopicConsumer;
 import com.kafka.retrytopic.consumer.EventConsumer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-@IsRetryTopicConsumer
-public class ToProducerDummy implements IToProducer {
+public class RetryTopicConsumerDummy implements IRetryTopicConsumer {
 
-    @Override
     public void produce(EventConsumer eventConsumer) {
         log.info("retry producer is disabled.");
     }

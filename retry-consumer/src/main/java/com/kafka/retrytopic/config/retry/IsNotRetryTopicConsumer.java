@@ -7,8 +7,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@ConditionalOnProperty(name = "application.is-retry-topic.enabled", havingValue = "true", matchIfMissing = false)
+@ConditionalOnProperty(name = "application.is-retry-topic-consumer", havingValue = "false", matchIfMissing = true)
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.METHOD, ElementType.ANNOTATION_TYPE})
-public @interface IsRetryTopicConsumerEnabled {
+public @interface IsNotRetryTopicConsumer {
 }

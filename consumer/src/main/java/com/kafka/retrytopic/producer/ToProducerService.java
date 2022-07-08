@@ -1,6 +1,6 @@
 package com.kafka.retrytopic.producer;
 
-import com.kafka.retrytopic.config.retry.IsRetryTopicConsumerEnabled;
+import com.kafka.retrytopic.config.retry.IsNotRetryTopicConsumer;
 import com.kafka.retrytopic.consumer.EventConsumer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 @RequiredArgsConstructor
-@IsRetryTopicConsumerEnabled
+@IsNotRetryTopicConsumer
 public class ToProducerService implements IToProducer {
 
     private final KafkaTemplate<String, EventConsumer> template;
@@ -21,7 +21,7 @@ public class ToProducerService implements IToProducer {
 
     @Override
     public void produce(EventConsumer eventConsumer) {
-        template.send(eventConsumer.getNumber(), retrytopic, eventConsumer);
+        template.send(retrytopic, eventConsumer.getUuid(), eventConsumer);
     }
 
 }

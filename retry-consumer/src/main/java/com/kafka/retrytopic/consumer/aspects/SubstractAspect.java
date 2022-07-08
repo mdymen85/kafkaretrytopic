@@ -1,5 +1,6 @@
 package com.kafka.retrytopic.consumer.aspects;
 
+import com.kafka.retrytopic.config.retry.IsNotRetryTopicConsumer;
 import com.kafka.retrytopic.config.retry.IsRetryTopicConsumer;
 import com.kafka.retrytopic.consumer.EventConsumer;
 import com.kafka.retrytopic.consumer.IRedirectControlService;

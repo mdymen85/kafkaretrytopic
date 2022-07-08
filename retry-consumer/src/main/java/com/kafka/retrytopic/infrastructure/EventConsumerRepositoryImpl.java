@@ -35,10 +35,4 @@ public class EventConsumerRepositoryImpl implements IEventConsumerRepository {
 
         }
     }
-
-    @Override
-    public boolean existsByUuidAndNumber(String uuid, String number) {
-        return eventRepository.existsByUuidAndNumber(uuid, number);
-    }
-
 }

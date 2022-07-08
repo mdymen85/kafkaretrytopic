@@ -10,16 +10,18 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.RetryableTopic;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Component
 @RequiredArgsConstructor
+@Transactional
 public class Consumer {
 
     @Value("${application.topic.from}")
     private String topic;
     private final IToProducer iToProducer;
-    private final RedirectControlService redirectControlService;
+    private final IRedirectControlService redirectControlService;
 
     @Redirect
     @Substract
@@ -38,7 +40,7 @@ public class Consumer {
         catch (Exception e) {
             log.error("error", e);
 
-            redirectControlService.saveControlKey(eventConsumer);
+            redirectControlService.doRedirect(eventConsumer);
 
             throw new Exception();
 

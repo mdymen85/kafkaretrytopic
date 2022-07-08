@@ -13,6 +13,5 @@ public class ControlKey {
     public void substract() {
         this.count--;
     }
-
     public boolean isLastElement() { return count == 1; }
 }

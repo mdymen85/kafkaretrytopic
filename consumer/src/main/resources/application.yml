@@ -4,8 +4,7 @@ application:
     to: retryapp-retrytopic
   retry-topic:
     enabled: true
-#  is-retry-topic:
-#    enabled: true
+  is-retry-topic-consumer: false
 
 server:
   port: 8084
