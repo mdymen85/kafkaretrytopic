@@ -26,6 +26,6 @@ public class SubstractAspect {
     public void substract(JoinPoint joinPoint)  {
         Object[] args = joinPoint.getArgs();
         var eventConsumer = (EventConsumer) args[0];
-        substractService.substract(eventConsumer.getUuid());
+        substractService.substract(eventConsumer);
     }
 }

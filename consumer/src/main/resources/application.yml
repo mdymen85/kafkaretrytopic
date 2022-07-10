@@ -2,8 +2,6 @@ application:
   topic:
     from: retryapp-topic
     to: retryapp-retrytopic
-  retry-topic:
-    enabled: true
   is-retry-topic-consumer: false
 
 server:

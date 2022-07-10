@@ -2,8 +2,6 @@ package com.kafka.retrytopic.consumer.aspects;
 
 import com.kafka.retrytopic.config.retry.IsRetryTopicConsumer;
 import com.kafka.retrytopic.consumer.EventConsumer;
-import com.kafka.retrytopic.consumer.IRedirectControlService;
-import com.kafka.retrytopic.consumer.RedirectControlService;
 import com.kafka.retrytopic.consumer.SubstractService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +23,6 @@ public class SubstractAspect {
     public void substract(JoinPoint joinPoint)  {
         Object[] args = joinPoint.getArgs();
         var eventConsumer = (EventConsumer) args[0];
-        substractService.substract(eventConsumer.getUuid());
+        substractService.substract(eventConsumer);
     }
 }

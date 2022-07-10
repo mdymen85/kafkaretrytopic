@@ -6,12 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 @IsRetryTopicConsumer
 public class RedirectControlServiceDummy implements IRedirectControlService {
-
-    @Override
-    public boolean existEvent(EventConsumer eventConsumer) {
-        return false;
-    }
-
+    
     @Override
     public void doRedirect(EventConsumer eventConsumer) {
 
@@ -23,12 +18,17 @@ public class RedirectControlServiceDummy implements IRedirectControlService {
     }
 
     @Override
-    public void add(String key) {
+    public void add(String key, String number) {
 
     }
 
     @Override
     public void saveControlKey(EventConsumer eventConsumer) {
 
+    }
+
+    @Override
+    public boolean existEvent(EventConsumer eventConsumer) {
+        return false;
     }
 }

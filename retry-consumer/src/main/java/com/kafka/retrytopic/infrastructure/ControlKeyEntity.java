@@ -30,5 +30,7 @@ public class ControlKeyEntity {
         this.count = count;
     }
 
-
+    public void substract() {
+        this.count--;
+    }
 }

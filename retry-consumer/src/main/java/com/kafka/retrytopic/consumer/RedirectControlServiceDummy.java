@@ -18,12 +18,17 @@ public class RedirectControlServiceDummy implements IRedirectControlService {
     }
 
     @Override
-    public void add(String key) {
+    public void add(String key, String number) {
 
     }
 
     @Override
     public void saveControlKey(EventConsumer eventConsumer) {
 
+    }
+
+    @Override
+    public boolean existEvent(EventConsumer eventConsumer) {
+        return false;
     }
 }

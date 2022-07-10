@@ -16,7 +16,7 @@ public class ControlKeyRepositoryImpl implements IControlKeyRepository {
     private final KeyRepository controlKeyRepository;
 
     @Override
-    public void add(String key) {
+    public void add(String key, String number) {
         var optControlKey = this.controlKeyRepository.findByKey(key);
         if (optControlKey.isPresent()) {
             this.controlKeyRepository.addKey(key);
@@ -32,7 +32,7 @@ public class ControlKeyRepositoryImpl implements IControlKeyRepository {
     }
 
     @Override
-    public Optional<ControlKey> findByKey(String key) {
+    public Optional<ControlKey> find(String key, String number) {
         var optControlKeyEntity = controlKeyRepository.findByKey(key);
 
         if (!optControlKeyEntity.isPresent()) {
@@ -59,12 +59,33 @@ public class ControlKeyRepositoryImpl implements IControlKeyRepository {
 
     @Override
     public void save(ControlKey controlKey) {
+        var optControlKey = this.controlKeyRepository.findByKey(controlKey.getKey());
+
+        if (optControlKey.isPresent()) {
+            optControlKey.get().setCount(controlKey.getCount());
+            this.controlKeyRepository.save(optControlKey.get());
+            return;
+        }
+
         var entity = ControlKeyEntity.builder()
                 .count(controlKey.getCount())
                 .key(controlKey.getKey())
                 .build();
 
         this.controlKeyRepository.save(entity);
+    }
+
+    @Override
+    public void substract(ControlKey controlKey) {
+        var entity = controlKeyRepository.findByKey(controlKey.getKey());
+
+        if (!entity.isPresent()) {
+            throw new IllegalStateException();
+        }
+
+        entity.get().substract();
+
+        this.controlKeyRepository.save(entity.get());
     }
 
 }

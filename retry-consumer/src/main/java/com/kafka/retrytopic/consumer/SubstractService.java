@@ -11,8 +11,8 @@ public class SubstractService {
 
     private final IControlKeyRepository controlKeyRepository;
 
-    public void substract(String key) {
-        var optControlKey = this.controlKeyRepository.findByKey(key);
+    public void substract(EventConsumer eventConsumer) {
+        var optControlKey = this.controlKeyRepository.find(eventConsumer.getUuid(), eventConsumer.getNumber());
 
         if (!optControlKey.isPresent()) {
             throw new IllegalStateException();
@@ -21,7 +21,7 @@ public class SubstractService {
         var controlKey = optControlKey.get();
 
         if (controlKey.isLastElement()) {
-            this.controlKeyRepository.delete(key);
+            this.controlKeyRepository.delete(eventConsumer.getUuid());
             return;
         }
 

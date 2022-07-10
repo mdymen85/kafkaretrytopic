@@ -24,7 +24,7 @@ public class RedirectControlService implements IRedirectControlService {
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void doRedirect(EventConsumer eventConsumer) {
-        this.controlKeyRepository.add(eventConsumer.getUuid());
+        this.controlKeyRepository.add(eventConsumer.getUuid(), eventConsumer.getNumber());
         this.eventConsumerRepository.save(eventConsumer);
     }
 
@@ -35,8 +35,8 @@ public class RedirectControlService implements IRedirectControlService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void add(String key) {
-        controlKeyRepository.add(key);
+    public void add(String key, String number) {
+        controlKeyRepository.add(key, number);
     }
 
     @Override
