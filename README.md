@@ -11,7 +11,7 @@ There are three main projects in this implementation:
 
 The first one, the **consumer**, will consume a message from the **producer**, and will throw an exception -just for testig porpuses-. And, because of this exception, in the catch block, the code will add a message in a pending table to be sent to a retry topic. After this, the consumer will consume the same message but, in this case, from the **retry-topic**, and will redirect it to a specific retry topic where **retry consumer**, other instance of **consumer** will consume that message.
 
-### What happend if i want to maintain the order of the message?
+### What happend if i want to maintain the order the messages with the same key?
 
 In this case, in the **control_key** table, we save the key reference of the messages, and a value starting with 1. That represents the quantity of messages that are being redirected to the **retry-topic**. Every time that a new message with the same key arrives to the **consumer** will check if needs to redirect to the **retry-topic** and, in such case, will add 1 to the **control_key** table. 
 
