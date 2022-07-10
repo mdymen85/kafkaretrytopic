@@ -17,4 +17,6 @@ In this case, in the **control_key** table, we save the key reference of the mes
 
 After a messsage, with a specific key, is consumed from the **retry-topic**, will substract 1 from the **control_key** table. After all messages from the same key had been consumed in the **retry-consumer**, the row from the control_key table with that key will be deleted. So, in this case, the **consumer** will continue processing the message without the need of redirect the message to the retry-topic.
 
-![image](https://user-images.githubusercontent.com/8418011/178128600-d560e07c-bb0a-4b4c-aa70-1f395e5f27a7.png)
+![image](https://user-images.githubusercontent.com/8418011/178128645-d38843b9-76d3-4e5b-8023-15b27163a29b.png)
+
+In order to use the same application as **consumer** and **retry-consumer** some configuration must be implemented. So, in cases of a consumer some classes and methods will be loaded, and in case of a retry-consumer, some other classes won't be loaded.
